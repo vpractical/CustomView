@@ -2,6 +2,7 @@ package com.y.customview;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         vp = findViewById(R.id.vp);
         vp.setAdapter(adapter = new MainAdapter(views));
 
+        views.add(getDragDelView());
         views.add(getScrollRevealView());
         views.add(getRevealView());
         views.add(new ClockView(this));
@@ -39,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
         views.add(new LayerView(this));
 
         adapter.notifyDataSetChanged();
+    }
+
+    private View getDragDelView() {
+        return LayoutInflater.from(this).inflate(R.layout.view_dragdelview,null);
     }
 
     private View getScrollRevealView() {
