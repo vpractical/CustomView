@@ -7,12 +7,12 @@
     android:orientation="vertical"
     android:clipChildren="false"
     android:clipToPadding="false"
+    android:background="#cccccc"
     >
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="#c45884"
         android:paddingEnd="30dp"
         android:clipChildren="false"
         android:clipToPadding="false"
@@ -25,10 +25,13 @@
             android:layout_gravity="center_vertical|end"
             />
     </FrameLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#000000"/>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="#74a214"
         android:paddingEnd="30dp"
         android:clipChildren="false"
         android:clipToPadding="false"
@@ -46,9 +49,19 @@
             app:bubble_textColor="#ffffff"
             />
     </FrameLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#000000"/>
+<!--
+ * 从5.0 开始，在同一个layout下，Button将总是位于最上层，就算在Button上覆盖了相应的View
+ * 使用android:stateListAnimator=”@null”去掉阴影效果而使Button可以被正常的覆盖
+ * 属性使控件在点击时产生不同的交互，对于Button，点击时默认有个阴影的效果用于表示按下的状态
+  -->
     <Button
         android:id="@+id/btn_reset"
         android:layout_width="100dp"
         android:layout_height="60dp"
+        android:stateListAnimator="@null"
         android:text="重置" />
 </LinearLayout>

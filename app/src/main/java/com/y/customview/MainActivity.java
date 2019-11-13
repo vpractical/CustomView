@@ -19,6 +19,11 @@ import com.y.customview.view.ScratchcardView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 从5.0 开始，在同一个layout下，Button将总是位于最上层，就算在Button上覆盖了相应的View
+ * 使用android:stateListAnimator=”@null”去掉阴影效果而使Button可以被正常的覆盖
+ * 属性使控件在点击时产生不同的交互，对于Button，点击时默认有个阴影的效果用于表示按下的状态
+ */
 public class MainActivity extends AppCompatActivity {
 
     ViewPager vp;

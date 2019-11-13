@@ -241,7 +241,7 @@ public class DragBubbleView extends View {
     public boolean dispatchTouchEvent(MotionEvent event) {
         if (mState == STATE_CONNET || mState == STATE_SEPARATE) {
             getParent().requestDisallowInterceptTouchEvent(true);
-            bringToFront();
+//            ((View)getParent()).bringToFront();
         }
         return super.dispatchTouchEvent(event);
     }
