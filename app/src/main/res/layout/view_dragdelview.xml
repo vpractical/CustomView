@@ -1,48 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    >
 
-
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="#80845214"
-        android:gravity="center_vertical|end"
+        android:layout_height="100dp"
+        android:background="#c45884"
         android:paddingEnd="30dp"
-
+        android:clipChildren="false"
+        android:clipToPadding="false"
         >
 
-        <com.y.customview.view.DragDelView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-
-    <LinearLayout
+        <com.y.customview.view.DragBubbleView
+            android:id="@+id/dragDelView1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical|end"
+            />
+    </FrameLayout>
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="#80245214"
-        android:gravity="center_vertical|end"
+        android:layout_height="100dp"
+        android:background="#74a214"
         android:paddingEnd="30dp"
-
+        android:clipChildren="false"
+        android:clipToPadding="false"
         >
 
-        <com.y.customview.view.DragDelView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="#80d15214"
-        android:gravity="center_vertical|end"
-        android:paddingEnd="30dp">
-
-        <com.y.customview.view.DragDelView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+        <com.y.customview.view.DragBubbleView
+            android:id="@+id/dragDelView2"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical|end"
+            app:bubble_textSize="14dp"
+            app:bubble_color="#000000"
+            app:bubble_radius="10dp"
+            app:bubble_text="99"
+            app:bubble_textColor="#ffffff"
+            />
+    </FrameLayout>
+    <Button
+        android:id="@+id/btn_reset"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:text="重置" />
 </LinearLayout>

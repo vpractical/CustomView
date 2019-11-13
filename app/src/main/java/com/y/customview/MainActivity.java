@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.y.customview.view.ClockView;
+import com.y.customview.view.DragBubbleView;
 import com.y.customview.view.GalleryHorizontalScrollView;
 import com.y.customview.view.LayerView;
 import com.y.customview.view.RevealDrawable;
@@ -44,7 +45,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private View getDragDelView() {
-        return LayoutInflater.from(this).inflate(R.layout.view_dragdelview,null);
+        View view = LayoutInflater.from(this).inflate(R.layout.view_dragdelview,null);
+        final DragBubbleView ddView1 = view.findViewById(R.id.dragDelView1);
+        final DragBubbleView ddView2 = view.findViewById(R.id.dragDelView2);
+        view.findViewById(R.id.btn_reset).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ddView1.setBubbleText("3");
+                ddView2.setBubbleText("10");
+            }
+        });
+        ddView1.setBubbleText("2");
+        return view;
     }
 
     private View getScrollRevealView() {
