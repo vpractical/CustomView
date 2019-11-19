@@ -13,6 +13,7 @@ import com.y.customview.view.ClockView;
 import com.y.customview.view.DragBubbleView;
 import com.y.customview.view.GalleryHorizontalScrollView;
 import com.y.customview.view.LayerView;
+import com.y.customview.view.LoadingView1;
 import com.y.customview.view.RevealDrawable;
 import com.y.customview.view.ScratchcardView;
 
@@ -35,10 +36,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         vp = findViewById(R.id.vp);
         vp.setAdapter(adapter = new MainAdapter(views));
 
+        LoadingView1 loadingView1 = new LoadingView1(this);
+        getLifecycle().addObserver(loadingView1);
+        views.add(loadingView1);
         views.add(getDragDelView());
         views.add(getScrollRevealView());
         views.add(getRevealView());
@@ -78,8 +81,6 @@ public class MainActivity extends AppCompatActivity {
         iv.setImageDrawable(rd);
         return iv;
     }
-
-
 
 
 }

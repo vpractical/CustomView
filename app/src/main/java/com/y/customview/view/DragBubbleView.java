@@ -16,6 +16,7 @@ import android.graphics.Path;
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
@@ -50,7 +51,7 @@ public class DragBubbleView extends View {
      * v.(莫名其妙地)突然消失;不复存在;消亡;绝迹
      */
     private static final int STATE_DEFAULT = 0;
-    private static final int STATE_CONNET = 1;
+    private static final int STATE_CONNECT = 1;
     private static final int STATE_SEPARATE = 2;
     private static final int STATE_VANISH = 3;
     private int mState;
@@ -121,7 +122,6 @@ public class DragBubbleView extends View {
 
         //消失画笔
         mPaintVanish = new Paint();
-        mPaintVanish.setFlags(Paint.ANTI_ALIAS_FLAG);
         //消除位图锯齿
         mPaintVanish.setFilterBitmap(true);
         mVanishRect = new Rect();
@@ -143,7 +143,7 @@ public class DragBubbleView extends View {
             drawBubble(canvas);
         }
 
-        if (mState == STATE_CONNET) {
+        if (mState == STATE_CONNECT) {
             drawConnect(canvas);
             drawBubble(canvas);
         }
@@ -170,19 +170,19 @@ public class DragBubbleView extends View {
                 mLeavedCenter.y + mTextRect.height() / 2f - mTextRect.height() / 8f, mPaintText);
     }
 
-    /**
+    /*
      * 绘制连接状态
-     * ·A
-     * ·圆心  占位圆横切线
-     * ·B   ·
-     * ·
-     * ·
-     * ·
-     * ·           ·D
-     * ·     ·
-     * ·  连接状态下移动的气泡 移动圆的横切线
-     * ·
-     * ·C
+     *      ·A
+     *    ·圆心  占位圆横切线
+     * ·B    ·
+     *          ·
+     *             ·
+     *                ·
+     *                   ·           ·D
+     *                      ·     ·
+     *                         ·  连接状态下移动的气泡 移动圆的横切线
+     *                      ·
+     *                   ·C
      * 连接时绘制原点圆，移动圆，还绘制路径
      * 路径从A->B->C->D->A,中间填充气泡颜色，并且A->B,C->D是切线路径，B->C,D->A是贝塞尔路径
      */
@@ -227,6 +227,7 @@ public class DragBubbleView extends View {
         mVanishRect.right = (int) (mLeavedCenter.x + mBubbleRadius / 2);
         mVanishRect.bottom = (int) (mLeavedCenter.y + mBubbleRadius / 2);
         canvas.drawBitmap(mVanishBitmaps[mVanishIndex], null, mVanishRect, mPaintVanish);
+        Log.e("---","" + mVanishIndex);
     }
 
     @Override
@@ -239,9 +240,8 @@ public class DragBubbleView extends View {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
-        if (mState == STATE_CONNET || mState == STATE_SEPARATE) {
+        if (mState == STATE_CONNECT || mState == STATE_SEPARATE) {
             getParent().requestDisallowInterceptTouchEvent(true);
-//            ((View)getParent()).bringToFront();
         }
         return super.dispatchTouchEvent(event);
     }
@@ -252,19 +252,19 @@ public class DragBubbleView extends View {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 if (mState == STATE_DEFAULT) {
-                    mState = STATE_CONNET;
+                    mState = STATE_CONNECT;
                 } else if (mState == STATE_SEPARATE) {
-                    mDist = (float) Math.hypot(event.getX() - mHolderCenter.x, event.getY() - mHolderCenter.y);
+                    calculateDist(event);
                     if (nearHolder(mDist)) {
-                        mState = STATE_CONNET;
+                        mState = STATE_CONNECT;
                     }
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
-                if (mState == STATE_CONNET || mState == STATE_SEPARATE) {
+                if (mState == STATE_CONNECT || mState == STATE_SEPARATE) {
                     mLeavedCenter.set(event.getX(), event.getY());
-                    if (mState == STATE_CONNET) {
-                        mDist = (float) Math.hypot(event.getX() - mHolderCenter.x, event.getY() - mHolderCenter.y);
+                    if (mState == STATE_CONNECT) {
+                        calculateDist(event);
                         if (mDist > mMaxDist) {
                             mState = STATE_SEPARATE;
                         } else {
@@ -277,10 +277,10 @@ public class DragBubbleView extends View {
                 break;
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
-                if (mState == STATE_CONNET) {
+                if (mState == STATE_CONNECT) {
                     recover();
                 } else if (mState == STATE_SEPARATE) {
-                    mDist = (float) Math.hypot(event.getX() - mHolderCenter.x, event.getY() - mHolderCenter.y);
+                    calculateDist(event);
                     if (nearHolder(mDist)) {
                         recover();
                     } else {
@@ -359,6 +359,10 @@ public class DragBubbleView extends View {
      */
     private boolean nearHolder(float dist) {
         return dist < mBubbleRadius * 3;
+    }
+
+    private void calculateDist(MotionEvent event){
+        mDist = (float) Math.hypot(event.getX() - mHolderCenter.x, event.getY() - mHolderCenter.y);
     }
 
     private void reset() {

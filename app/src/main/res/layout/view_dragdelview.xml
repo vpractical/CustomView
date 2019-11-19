@@ -7,7 +7,6 @@
     android:orientation="vertical"
     android:clipChildren="false"
     android:clipToPadding="false"
-    android:background="#cccccc"
     >
 
     <FrameLayout
