@@ -14,8 +14,10 @@ import com.y.customview.view.DragBubbleView;
 import com.y.customview.view.GalleryHorizontalScrollView;
 import com.y.customview.view.LayerView;
 import com.y.customview.view.LoadingView1;
+import com.y.customview.view.LoadingView2;
 import com.y.customview.view.RevealDrawable;
 import com.y.customview.view.ScratchcardView;
+import com.y.customview.view.WaveHeaderView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         vp = findViewById(R.id.vp);
         vp.setAdapter(adapter = new MainAdapter(views));
 
+        views.add(new WaveHeaderView(this));
+        views.add(new LoadingView2(this));
         LoadingView1 loadingView1 = new LoadingView1(this);
         getLifecycle().addObserver(loadingView1);
         views.add(loadingView1);
