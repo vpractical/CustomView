@@ -54,6 +54,22 @@ public class MainActivity extends AppCompatActivity {
         views.add(new LayerView(this));
 
         adapter.notifyDataSetChanged();
+        vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                setTitle(views.get(position).getClass().getSimpleName());
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     private View getDragDelView() {

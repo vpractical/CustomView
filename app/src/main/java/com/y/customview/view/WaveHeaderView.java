@@ -76,14 +76,14 @@ public class WaveHeaderView extends View {
     private void initPath() {
         mPathWave.reset();
         //奇数的话，右侧能超出屏幕一截，船能开出屏幕
-        int num = 9;
+        int num = 13;
         float w = width / num;
         int k = 1;
         mPathWave.moveTo(-w * 2, height);
-        mPathWave.quadTo(-w,height + 70 * k, 0, height);
+        mPathWave.quadTo(-w,height + 40 * k, 0, height);
         for (int i = 1; i <= num; i++) {
             k *= -1;
-            mPathWave.quadTo(w * i, height + 70 * k, w * ++i, height);
+            mPathWave.quadTo(w * i, height + 40 * k, w * ++i, height);
         }
         mPm.setPath(mPathWave, false);
         mLength = mPm.getLength();
