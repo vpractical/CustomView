@@ -24,7 +24,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 //        } else {
 //            StatusBarUtil.setStatusBarColor(this, R.color.colorAccent);
 //        }
-//
 
     }
 

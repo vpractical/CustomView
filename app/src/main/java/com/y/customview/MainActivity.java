@@ -3,6 +3,7 @@ package com.y.customview;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -33,6 +34,15 @@ public class MainActivity extends AppCompatActivity {
     MainAdapter adapter;
     List<View> views = new ArrayList<>();
 
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public void onUserInteraction() {
+        super.onUserInteraction();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         vp = findViewById(R.id.vp);
         vp.setAdapter(adapter = new MainAdapter(views));
 
+        views.add(getSplashView());
         views.add(new WaveHeaderView(this));
         views.add(new LoadingView2(this));
         LoadingView1 loadingView1 = new LoadingView1(this);
@@ -70,6 +81,13 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        setTitle(views.get(0).getClass().getSimpleName());
+    }
+
+    private View getSplashView(){
+        View view = LayoutInflater.from(this).inflate(R.layout.view_splashview,null);
+        return view;
     }
 
     private View getDragDelView() {
