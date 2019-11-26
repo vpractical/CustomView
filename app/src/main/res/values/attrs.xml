@@ -7,4 +7,14 @@
         <attr name="bubble_textSize" format="dimension"/>
         <attr name="bubble_text" format="string"/>
     </declare-styleable>
+    
+    <declare-styleable name="ScrollAnimParams">
+        <attr name="anim_alpha" format="boolean"/>
+        <attr name="anim_translation">
+            <flag name="left" value="0x01"/>
+            <flag name="top" value="0x02"/>
+            <flag name="right" value="0x04"/>
+            <flag name="bottom" value="0x08"/>
+        </attr>
+    </declare-styleable>
 </resources>

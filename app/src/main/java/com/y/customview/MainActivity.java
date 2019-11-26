@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         vp = findViewById(R.id.vp);
         vp.setAdapter(adapter = new MainAdapter(views));
 
+        views.add(getFrameView());
         views.add(getSplashView());
         views.add(new WaveHeaderView(this));
         views.add(new LoadingView2(this));
@@ -83,6 +84,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         setTitle(views.get(0).getClass().getSimpleName());
+    }
+
+    private View getFrameView() {
+        return LayoutInflater.from(this).inflate(R.layout.view_frame,null);
     }
 
     private View getSplashView(){
