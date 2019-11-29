@@ -10,15 +10,15 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import com.y.customview.view.ClockView;
-import com.y.customview.view.DragBubbleView;
-import com.y.customview.view.GalleryHorizontalScrollView;
-import com.y.customview.view.LayerView;
-import com.y.customview.view.LoadingView1;
-import com.y.customview.view.LoadingView2;
-import com.y.customview.view.RevealDrawable;
-import com.y.customview.view.ScratchcardView;
-import com.y.customview.view.WaveHeaderView;
+import com.y.customview.anim.ClockView;
+import com.y.customview.anim.DragBubbleView;
+import com.y.customview.anim.GalleryHorizontalScrollView;
+import com.y.customview.anim.LayerView;
+import com.y.customview.anim.LoadingView1;
+import com.y.customview.anim.LoadingView2;
+import com.y.customview.anim.RevealDrawable;
+import com.y.customview.anim.ScratchcardView;
+import com.y.customview.anim.WaveHeaderView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,9 +55,7 @@ public class MainActivity extends AppCompatActivity {
         views.add(getSplashView());
         views.add(new WaveHeaderView(this));
         views.add(new LoadingView2(this));
-        LoadingView1 loadingView1 = new LoadingView1(this);
-        getLifecycle().addObserver(loadingView1);
-        views.add(loadingView1);
+        views.add(getLoadingView1());
         views.add(getDragDelView());
         views.add(getScrollRevealView());
         views.add(getRevealView());
@@ -87,16 +85,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private View getFrameView() {
-        return LayoutInflater.from(this).inflate(R.layout.view_frame,null);
+        return LayoutInflater.from(this).inflate(R.layout.view_frame, null);
     }
 
-    private View getSplashView(){
-        View view = LayoutInflater.from(this).inflate(R.layout.view_splashview,null);
+    private View getSplashView() {
+        View view = LayoutInflater.from(this).inflate(R.layout.view_splashview, null);
         return view;
     }
 
+    private View getLoadingView1() {
+        LoadingView1 loadingView1 = new LoadingView1(this);
+        getLifecycle().addObserver(loadingView1);
+        return loadingView1;
+    }
+
     private View getDragDelView() {
-        View view = LayoutInflater.from(this).inflate(R.layout.view_dragdelview,null);
+        View view = LayoutInflater.from(this).inflate(R.layout.view_dragdelview, null);
         final DragBubbleView ddView1 = view.findViewById(R.id.dragDelView1);
         final DragBubbleView ddView2 = view.findViewById(R.id.dragDelView2);
         view.findViewById(R.id.btn_reset).setOnClickListener(new View.OnClickListener() {
@@ -120,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
         ImageView iv = new ImageView(this);
         Drawable d1 = getResources().getDrawable(R.drawable.avft);
         Drawable d2 = getResources().getDrawable(R.drawable.avft_active);
-        RevealDrawable rd = new RevealDrawable(d1,d2,RevealDrawable.HORIZONTAL);
+        RevealDrawable rd = new RevealDrawable(d1, d2, RevealDrawable.HORIZONTAL);
         iv.setImageDrawable(rd);
         return iv;
     }

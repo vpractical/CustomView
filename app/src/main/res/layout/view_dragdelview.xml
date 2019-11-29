@@ -17,7 +17,7 @@
         android:clipToPadding="false"
         >
 
-        <com.y.customview.view.DragBubbleView
+        <com.y.customview.anim.DragBubbleView
             android:id="@+id/dragDelView1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -36,7 +36,7 @@
         android:clipToPadding="false"
         >
 
-        <com.y.customview.view.DragBubbleView
+        <com.y.customview.anim.DragBubbleView
             android:id="@+id/dragDelView2"
             android:layout_width="20dp"
             android:layout_height="20dp"
