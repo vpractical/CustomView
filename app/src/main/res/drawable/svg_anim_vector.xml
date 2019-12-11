@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/svg_a"
+    >
+    <target android:name="path1" android:animation="@animator/svg_anim"/>
+    <!--
+    <target android:name="path2" android:animation="@animator/svg_anim"/>
+    <target android:name="path3" android:animation="@animator/svg_anim"/>
+    <target android:name="path4" android:animation="@animator/svg_anim"/>
+    <target android:name="path5" android:animation="@animator/svg_anim"/>
+    <target android:name="path6" android:animation="@animator/svg_anim"/>
+    <target android:name="path7" android:animation="@animator/svg_anim"/>
+    <target android:name="path8" android:animation="@animator/svg_anim"/>
+    <target android:name="path9" android:animation="@animator/svg_anim"/>
+    <target android:name="path10" android:animation="@animator/svg_anim"/>
+    <target android:name="path11" android:animation="@animator/svg_anim"/>
+    <target android:name="path12" android:animation="@animator/svg_anim"/>
+    <target android:name="path13" android:animation="@animator/svg_anim"/>
+    <target android:name="path14" android:animation="@animator/svg_anim"/>
+    <target android:name="path15" android:animation="@animator/svg_anim"/>
+    <target android:name="path16" android:animation="@animator/svg_anim"/>
+    -->
+</animated-vector>

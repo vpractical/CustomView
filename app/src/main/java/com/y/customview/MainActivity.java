@@ -1,5 +1,6 @@
 package com.y.customview;
 
+import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         vp = findViewById(R.id.vp);
         vp.setAdapter(adapter = new MainAdapter(views));
 
+        views.add(getSvgAnim());
         views.add(new ChinaView(this));
         views.add(getFrameView());
         views.add(getSplashView());
@@ -84,6 +86,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
         setTitle(views.get(0).getClass().getSimpleName());
+    }
+
+    /**
+     * svg图片和动画需在5.0前兼容
+     */
+    private View getSvgAnim() {
+        ImageView iv = new ImageView(this);
+        Drawable drawable = getResources().getDrawable(R.drawable.svg_anim_vector);
+        iv.setImageDrawable(drawable);
+        ((AnimatedVectorDrawable)drawable).start();
+        return iv;
     }
 
     private View getFrameView() {
