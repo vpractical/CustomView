@@ -1,4 +1,4 @@
-package com.y.customview.anim;
+package com.y.customview.view;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

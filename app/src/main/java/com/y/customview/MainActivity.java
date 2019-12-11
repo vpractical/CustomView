@@ -10,15 +10,16 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import com.y.customview.anim.ClockView;
-import com.y.customview.anim.DragBubbleView;
-import com.y.customview.anim.GalleryHorizontalScrollView;
-import com.y.customview.anim.LayerView;
-import com.y.customview.anim.LoadingView1;
-import com.y.customview.anim.LoadingView2;
-import com.y.customview.anim.RevealDrawable;
-import com.y.customview.anim.ScratchcardView;
-import com.y.customview.anim.WaveHeaderView;
+import com.y.customview.svg.ChinaView;
+import com.y.customview.view.ClockView;
+import com.y.customview.view.DragBubbleView;
+import com.y.customview.view.GalleryHorizontalScrollView;
+import com.y.customview.view.LayerView;
+import com.y.customview.view.LoadingView1;
+import com.y.customview.view.LoadingView2;
+import com.y.customview.view.RevealDrawable;
+import com.y.customview.view.ScratchcardView;
+import com.y.customview.view.WaveHeaderView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         vp = findViewById(R.id.vp);
         vp.setAdapter(adapter = new MainAdapter(views));
 
+        views.add(new ChinaView(this));
         views.add(getFrameView());
         views.add(getSplashView());
         views.add(new WaveHeaderView(this));

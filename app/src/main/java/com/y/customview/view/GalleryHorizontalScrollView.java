@@ -1,4 +1,4 @@
-package com.y.customview.anim;
+package com.y.customview.view;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
