@@ -81,15 +81,6 @@ public class GalleryHorizontalScrollView extends HorizontalScrollView{
         reveal();
     }
 
-
-
-
-
-
-
-
-
-
     public void addViews(){
         container.removeAllViews();
         for (int i = 0; i < mImgIds.length; i++) {
